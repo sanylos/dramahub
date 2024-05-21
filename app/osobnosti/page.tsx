@@ -2,7 +2,7 @@ import ProfileCard from "@/components/ProfileCard"
 const OsobnostiPage = () => {
     return (
         <div>
-            OsobnostiPage
+            <h1>Osobnosti</h1>
             <ProfileCard />
         </div>
     )
