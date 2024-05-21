@@ -1,7 +1,11 @@
+import ProfileCard from "@/components/ProfileCard"
 const OsobnostiPage = () => {
-  return (
-    <div>OsobnostiPage</div>
-  )
+    return (
+        <div>
+            OsobnostiPage
+            <ProfileCard />
+        </div>
+    )
 }
 
 export default OsobnostiPage
