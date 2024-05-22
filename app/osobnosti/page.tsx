@@ -17,9 +17,8 @@ const OsobnostiPage = () => {
     return (
         <div>
             <h1>Osobnosti</h1>
-            {JSON.stringify(celebrities)}
-            <div className="flex">
-                {celebrities && celebrities.map(celebrity => <ProfileCard key={celebrity.id} celebrity={celebrity} />)}
+            <div className="grid grid-cols-4">
+                {celebrities && celebrities.map(celebrity => <div key={celebrity.id} className="m-1"><ProfileCard celebrity={celebrity} /></div>)}
             </div>
 
         </div>
