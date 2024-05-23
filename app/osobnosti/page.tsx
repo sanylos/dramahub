@@ -19,7 +19,7 @@ const OsobnostiPage = async () => {
     return (
         <div>
             <h1>Osobnosti</h1>
-            <div className="grid grid-cols-4">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 ">
                 {celebrities.length > 0 && celebrities.map(celebrity => <div key={celebrity.id} className="m-1">{<ProfileCard celebrity={celebrity} />}</div>)}
             </div>
 
