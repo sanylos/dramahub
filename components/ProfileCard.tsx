@@ -1,4 +1,3 @@
-"use server"
 import { Celebrity } from "@/app/types/celebrity.types"
 
 export const getPictureUrl = async (youtube_id: string) => {
@@ -11,6 +10,7 @@ export const getPictureUrl = async (youtube_id: string) => {
     }
     return null;
 }
+export const revalidate = 10;
 const ProfileCard = async ({ celebrity }: { celebrity: Celebrity }) => {
     const pictureUrl = await getPictureUrl(celebrity.youtube_id);
 

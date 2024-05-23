@@ -12,7 +12,7 @@ export const fetchCelebrities = async () => {
     if (data) return data;
     return null;
 }
-
+export const revalidate = 10;
 const OsobnostiPage = async () => {
     const celebrities: Celebrity[] = await fetchCelebrities();
 
