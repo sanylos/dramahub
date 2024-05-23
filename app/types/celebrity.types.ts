@@ -4,5 +4,6 @@ export interface Celebrity {
     real_name: string,
     birth_date: Date,
     origin_country: string,
-    description: string
+    description: string,
+    youtube_id: string
 }
