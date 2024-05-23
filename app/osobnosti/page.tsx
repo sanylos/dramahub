@@ -1,24 +1,26 @@
-"use client"
 import ProfileCard from "@/components/ProfileCard"
-import { createClient } from '@/utils/supabase/client'
 import { useEffect, useState } from "react";
 import { Celebrity } from "../types/celebrity.types";
-const OsobnostiPage = () => {
-    const supabase = createClient()
-    const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
-    const fetchCelebrities = async () => {
-        const { data } = await supabase
-            .from('celebrities').select()
-        setCelebrities(data);
-    }
-    useEffect(() => {
-        fetchCelebrities();
-    })
+import { createClient } from "@supabase/supabase-js";
+
+export const fetchCelebrities = async () => {
+    const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    )
+    const { data } = await supabase.from('celebrities').select();
+    if (data) return data;
+    return null;
+}
+
+const OsobnostiPage = async () => {
+    const celebrities: Celebrity[] = await fetchCelebrities();
+
     return (
         <div>
             <h1>Osobnosti</h1>
             <div className="grid grid-cols-4">
-                {celebrities && celebrities.map(celebrity => <div key={celebrity.id} className="m-1"><ProfileCard celebrity={celebrity} /></div>)}
+                {celebrities.length > 0 && celebrities.map(celebrity => <div key={celebrity.id} className="m-1">{<ProfileCard celebrity={celebrity} />}</div>)}
             </div>
 
         </div>
