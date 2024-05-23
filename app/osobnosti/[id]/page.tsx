@@ -11,7 +11,7 @@ export const fetchCelebrity = async (nickname: string) => {
     if (data) return data;
     return null;
 }
-
+export const revalidate = 10;
 const OsobnostPage = async ({ params }: { params: { id: string } }) => {
     const celebrity = await fetchCelebrity(params.id);
     return (
