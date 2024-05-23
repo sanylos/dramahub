@@ -14,13 +14,13 @@ export const fetchCelebrities = async () => {
 }
 export const revalidate = 10;
 const OsobnostiPage = async () => {
-    const celebrities: Celebrity[] = await fetchCelebrities();
+    const celebrities: Celebrity[] | null = await fetchCelebrities();
 
     return (
         <div>
             <h1>Osobnosti</h1>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 ">
-                {celebrities.length > 0 && celebrities.map(celebrity => <div key={celebrity.id} className="m-1">{<ProfileCard celebrity={celebrity} />}</div>)}
+                {celebrities && celebrities.map(celebrity => <div key={celebrity.id} className="m-1">{<ProfileCard celebrity={celebrity} />}</div>)}
             </div>
 
         </div>
