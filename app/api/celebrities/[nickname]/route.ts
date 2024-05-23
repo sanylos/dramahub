@@ -10,7 +10,7 @@ export async function GET(request: NextRequest, { params }: { params: { nickname
         .from('celebrities')
         .select('*')
         .ilike('nickname', params.nickname)
-        .single();
-    if (data) return NextResponse.json(Object.values(data));
+        .single()
+    if (data) return NextResponse.json(data);
     return null;
 }
