@@ -1,7 +1,7 @@
 "use server"
 import { Celebrity } from "@/app/types/celebrity.types"
 
-export const getPictureUrl = async (youtube_id) => {
+export const getPictureUrl = async (youtube_id: string) => {
     if (youtube_id) {
         const res = await fetch('https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAgjSHmg61HVNMTXgwIy5WWwO5ZS3H1Wqk&part=snippet,id,statistics&id=' + youtube_id);
         const data = await res.json();
