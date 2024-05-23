@@ -4,7 +4,7 @@ import { Celebrity } from "../types/celebrity.types";
 import { createClient } from "@supabase/supabase-js";
 
 export const fetchCelebrities = async () => {
-    const res = await fetch('http://localhost:3000/api/celebrities');
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities');
     const data = res.json();
     return data;
 }
