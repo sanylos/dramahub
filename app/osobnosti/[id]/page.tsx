@@ -5,7 +5,7 @@ export const fetchCelebrity = async (nickname: string) => {
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     )
-    const { data, error } = await supabase.from('celebrities').select().ilike('nickname', nickname);
+    const { data, error } = await supabase.from('celebrities').select().ilike('nickname', nickname).single();
     console.log('EEEERRRRRROOOOORRRRR:' + error)
     console.log(data)
     if (data) return data;
@@ -16,17 +16,16 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
     const celebrity = await fetchCelebrity(params.id);
     return (
         <div className="bg-white md:mx-auto rounded shadow-xl w-full md:w-1/2 overflow-hidden">
-            {JSON.stringify(celebrity)}
             <div className="h-[140px] bg-gradient-to-r from-cyan-500 to-blue-500"></div>
             <div className="px-5 py-2 flex flex-col gap-3 pb-6">
                 <div className="h-[90px] shadow-md w-[90px] rounded-full border-4 overflow-hidden -mt-14 border-white"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" className="w-full h-full rounded-full object-center object-cover" /></div>
                 <div className="">
-                    <h3 className="text-xl text-slate-900 relative font-bold leading-6">Dadda Hicham</h3>
-                    <p className="text-sm text-gray-600">@fsdfd</p>
+                    <h3 className="text-xl text-slate-900 relative font-bold leading-6">{celebrity.real_name}</h3>
+                    <p className="text-sm text-gray-600">@{celebrity.nickname}</p>
                 </div>
                 <div className="flex gap-3 flex-wrap"><span className="rounded-sm bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">Developer</span><span className="rounded-sm bg-green-100 px-3 py-1 text-xs font-medium text-green-800">Design</span><span className="rounded-sm bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">Managements</span><span className="rounded-sm bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800">Projects</span></div>
-                <h4 className="text-md font-medium leading-3">About</h4>
-                <p className="text-sm text-stone-500">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere dolores aliquid sequi sunt iusto ipsum earum natus omnis asperiores architecto praesentium dignissimos pariatur, ipsa cum? Voluptate vero eius at voluptas?</p>
+                {/*<h4 className="text-md font-medium leading-3">About</h4>*/}
+                <p className="text-sm text-stone-500">{celebrity.description}</p>
                 <h4 className="text-md font-medium leading-3">Experiences</h4>
                 <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full "><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" className="h-8 w-8 text-slate-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
