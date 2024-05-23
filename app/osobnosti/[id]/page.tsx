@@ -6,8 +6,6 @@ export const fetchCelebrity = async (nickname: string) => {
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     )
     const { data, error } = await supabase.from('celebrities').select().ilike('nickname', nickname).single();
-    console.log('EEEERRRRRROOOOORRRRR:' + error)
-    console.log(data)
     if (data) return data;
     return null;
 }
