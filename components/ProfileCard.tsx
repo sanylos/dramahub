@@ -1,15 +1,6 @@
 import { Celebrity } from "@/app/types/celebrity.types"
+import { getPictureUrl } from "@/utils/youtube";
 
-export const getPictureUrl = async (youtube_id: string) => {
-    if (youtube_id) {
-        const res = await fetch('https://www.googleapis.com/youtube/v3/channels?key=AIzaSyAgjSHmg61HVNMTXgwIy5WWwO5ZS3H1Wqk&part=snippet,id,statistics&id=' + youtube_id);
-        const data = await res.json();
-        if (data.items[0].snippet.thumbnails.medium.url) {
-            return data.items[0].snippet.thumbnails.medium.url;
-        }
-    }
-    return null;
-}
 export const revalidate = 10;
 const ProfileCard = async ({ celebrity }: { celebrity: Celebrity }) => {
     const pictureUrl = await getPictureUrl(celebrity.youtube_id);
