@@ -1,9 +1,14 @@
 import { Celebrity } from "@/app/types/celebrity.types"
-import { getPictureUrl } from "@/utils/youtube";
+
+export const fetchProfilePictureUrl = async (nickname: string) => {
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities/' + nickname + '/youtube/profile-picture');
+    const data = res.json();
+    return data;
+}
 
 export const revalidate = 10;
 const ProfileCard = async ({ celebrity }: { celebrity: Celebrity }) => {
-    const pictureUrl = await getPictureUrl(celebrity.youtube_id);
+    const pictureUrl = await fetchProfilePictureUrl(celebrity.nickname);
 
     return (
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
