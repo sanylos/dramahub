@@ -8,5 +8,5 @@ export async function GET(request: NextRequest, { params }: { params: { nickname
         .ilike('nickname', params.nickname)
         .single()
     if (data) return NextResponse.json(data);
-    return null;
+    return NextResponse.json(null);
 }
