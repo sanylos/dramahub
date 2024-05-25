@@ -1,14 +1,12 @@
 import ProfileCard from "@/components/ProfileCard"
-import { useEffect, useState } from "react";
 import { Celebrity } from "../types/celebrity.types";
-import { createClient } from "@supabase/supabase-js";
 
 export const fetchCelebrities = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities');
     const data = res.json();
     return data;
 }
-export const revalidate = 10;
+export const revalidate = 60;
 const OsobnostiPage = async () => {
     const celebrities: Celebrity[] | null = await fetchCelebrities();
 
