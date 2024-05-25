@@ -1,15 +1,15 @@
 import { Celebrity } from "@/app/types/celebrity.types"
 import Link from "next/link";
 
-export const fetchProfilePictureUrl = async (nickname: string) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities/' + nickname + '/youtube/profile-picture');
+export const fetchProfile = async (nickname: string) => {
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities/' + nickname + '/youtube');
     const data = res.json();
     return data;
 }
 
 export const revalidate = 10;
 const ProfileCard = async ({ celebrity }: { celebrity: Celebrity }) => {
-    const pictureUrl = await fetchProfilePictureUrl(celebrity.nickname);
+    const profile = await fetchProfile(celebrity.nickname);
 
     return (
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -36,7 +36,7 @@ const ProfileCard = async ({ celebrity }: { celebrity: Celebrity }) => {
                 </div>
             </div>
             <div className="flex flex-col items-center pb-10">
-                <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={pictureUrl} alt="Bonnie image" />
+                <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={profile.profile_picture_url} alt="Bonnie image" />
                 <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{celebrity.nickname || celebrity.real_name}</h5>
                 <span className="text-sm text-gray-500 dark:text-gray-400">{celebrity.real_name}</span>
                 <div className="flex mt-4 md:mt-6">
