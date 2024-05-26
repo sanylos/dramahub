@@ -5,7 +5,10 @@ export const formatNumber = (number: number) => {
         { range: 999999999, suffix: 'mil.' },
     ]
     for (let i = 0; i < formats.length; i++) {
-        if (number <= formats[i].range) return (number / formats[i - 1].range).toFixed(2) + ' ' + formats[i].suffix;
+        if (number <= formats[i].range) {
+            if (number <= 999) return number;
+            return (number / formats[i - 1].range).toFixed(2) + ' ' + formats[i].suffix;
+        }
     }
     return number;
 }
