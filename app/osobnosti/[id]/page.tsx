@@ -55,9 +55,9 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
                             <div className="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full ">
                                 <FaUserGroup />
                                 <div className="leading-3">
-                                    <p className=" text-sm font-bold text-slate-700">{group.groups.name}</p><span className="text-xs text-slate-600">{formatDays((new Date(group.end_date).getTime() - new Date(group.start_date).getTime()) / (1000 * 3600 * 24))}</span>
+                                    <p className=" text-sm font-bold text-slate-700">{group.groups.name}</p><span className="text-xs text-slate-600">{formatDays(((group.end_date ? new Date(group.end_date).getTime() : new Date().getTime()) - new Date(group.start_date).getTime()) / (1000 * 3600 * 24))}</span>
                                 </div>
-                                <p className="text-sm text-slate-500 self-start ml-auto">As Ui Designer on Front Page</p>
+                                <p className="text-sm text-slate-500 self-start ml-auto">{group.role}</p>
                             </div>
                         </div>
                     ))
