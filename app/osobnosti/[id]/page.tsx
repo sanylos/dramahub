@@ -1,3 +1,4 @@
+import { formatNumber } from "@/utils/numberFormatter";
 export const fetchCelebrity = async (nickname: string) => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities/' + nickname);
     const data = res.json();
@@ -37,7 +38,7 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
                                c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/>
                                     </g>
                                 </svg>
-                                <span className="mx-1 text-sm">{profile.subcount}</span>
+                                <span className="mx-1 text-sm">{formatNumber(profile.subcount)}</span>
                             </div>
                         }
                     </div>
