@@ -48,19 +48,21 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
                 <div className="flex gap-3 flex-wrap"><span className="rounded-sm bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">Developer</span><span className="rounded-sm bg-green-100 px-3 py-1 text-xs font-medium text-green-800">Design</span><span className="rounded-sm bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">Managements</span><span className="rounded-sm bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800">Projects</span></div>
                 {/*<h4 className="text-md font-medium leading-3">About</h4>*/}
                 <p className="text-sm text-stone-500">{celebrity.description}</p>
-                <h4 className="text-md font-medium leading-3">Skupiny</h4>
                 {
-                    celebrity.celebrities_groups?.length && celebrity.celebrities_groups.map((group: { id: number; groups: { name: string | null; }; end_date: Date; start_date: Date; role: string }) => (
-                        <div key={group.id} className="flex flex-col gap-3">
-                            <div className="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full ">
-                                <FaUserGroup />
-                                <div className="leading-3">
-                                    <p className=" text-sm font-bold text-slate-700">{group.groups.name}</p><span className="text-xs text-slate-600">{formatDays(((group.end_date ? new Date(group.end_date).getTime() : new Date().getTime()) - new Date(group.start_date).getTime()) / (1000 * 3600 * 24))}</span>
+                    celebrity.celebrities_groups?.length > 0 && <div>
+                        <h4 className="text-md font-medium leading-3">Skupiny</h4>
+                        {celebrity.celebrities_groups.map((group: { id: number; groups: { name: string | null; }; end_date: Date; start_date: Date; role: string }) => (
+                            <div key={group.id} className="flex flex-col gap-3">
+                                <div className="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full ">
+                                    <FaUserGroup />
+                                    <div className="leading-3">
+                                        <p className=" text-sm font-bold text-slate-700">{group.groups.name}</p><span className="text-xs text-slate-600">{formatDays(((group.end_date ? new Date(group.end_date).getTime() : new Date().getTime()) - new Date(group.start_date).getTime()) / (1000 * 3600 * 24))}</span>
+                                    </div>
+                                    <p className="text-sm text-slate-500 self-start ml-auto">{group.role}</p>
                                 </div>
-                                <p className="text-sm text-slate-500 self-start ml-auto">{group.role}</p>
                             </div>
-                        </div>
-                    ))
+                        ))}
+                    </div>
                 }
 
             </div>
