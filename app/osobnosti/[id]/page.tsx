@@ -50,7 +50,7 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
                 <p className="text-sm text-stone-500">{celebrity.description}</p>
                 <h4 className="text-md font-medium leading-3">Skupiny</h4>
                 {
-                    celebrity.celebrities_groups?.length && celebrity.celebrities_groups.map(group => (
+                    celebrity.celebrities_groups?.length && celebrity.celebrities_groups.map((group: { id: number; groups: { name: string | null; }; end_date: Date; start_date: Date; role: string }) => (
                         <div key={group.id} className="flex flex-col gap-3">
                             <div className="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full ">
                                 <FaUserGroup />
