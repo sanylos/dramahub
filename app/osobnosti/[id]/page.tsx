@@ -64,7 +64,6 @@ const OsobnostPage = async ({ params }: { params: { id: string } }) => {
                         ))}
                     </div>
                 }
-
             </div>
         </div>
     )
