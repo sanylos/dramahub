@@ -5,6 +5,7 @@ export const fetchNews = async () => {
     const data = res.json();
     return data;
 }
+export const revalidate = 60;
 const NewsPage = async () => {
     const news = await fetchNews();
     return (
