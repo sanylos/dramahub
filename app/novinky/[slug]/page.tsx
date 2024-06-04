@@ -34,10 +34,11 @@ const NewsContentPage = async ({ params }: { params: { slug: string } }) => {
                         <div className="w-full mb-6 lg:mb-0">
                             <h1 className="sm:text-4xl text-5xl font-medium font-bold title-font mb-2 text-gray-900">{news.title}</h1>
                             <div className="h-1 w-20 bg-indigo-500 rounded"></div>
-                            <span>{new Date(news.created_at).toISOString().split('T')[0]}</span>
+                            <span>{new Date(news.created_at).toISOString().split('T')[0]}</span><br />
+                            <div className='text-xl font-semibold'>{news.description}</div>
                         </div>
                     </div>
-                    <div className="flex flex-wrap m-4">
+                    <div className="flex flex-wrap m-4 text-xl">
                         {news.content}
                     </div>
                 </div>
