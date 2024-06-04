@@ -1,6 +1,14 @@
+import { Celebrity } from "@/app/types/celebrity.types";
 import { formatDays } from "@/utils/dateFormatter";
 import { formatNumber } from "@/utils/numberFormatter";
 import { FaUserGroup } from "react-icons/fa6";
+
+export const generateStaticParams = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities');
+    const data: Celebrity[] = await res.json();
+    return data?.map(celebrity => celebrity.nickname);
+}
+
 export const fetchCelebrity = async (nickname: string) => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/celebrities/' + nickname);
     const data = res.json();
