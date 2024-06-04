@@ -1,10 +1,20 @@
+import { News } from '@/app/types/news.types';
 import Link from 'next/link';
 import React from 'react'
+
+export const generateStaticParams = async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/news');
+    const data = await res.json();
+    return data.map((news: News) => news.slug);
+}
+
 export const fetchNews = async (slug: string) => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/news/' + slug);
     const data = res.json();
     return data;
 }
+
+export const revalidate = 60;
 const NewsContentPage = async ({ params }: { params: { slug: string } }) => {
     const news = await fetchNews(params.slug);
     return (
