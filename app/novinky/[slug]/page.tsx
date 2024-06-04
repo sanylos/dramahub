@@ -1,4 +1,5 @@
 import { News } from '@/app/types/news.types';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react'
 
@@ -12,6 +13,14 @@ export const fetchNews = async (slug: string) => {
     const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/news/' + slug);
     const data = res.json();
     return data;
+}
+
+export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
+    const news = await fetchNews(params.slug);
+    return {
+        title: news.title,
+        description: news.description
+    }
 }
 
 export const revalidate = 60;
